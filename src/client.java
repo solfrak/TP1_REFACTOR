@@ -3,6 +3,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
@@ -28,9 +29,29 @@ public class client
 		fis.close();
 	}
 	
-	private static void download(String fileName, boolean isZip)
+	private static void download(String fileName, boolean isZip) throws Exception
 	{
+
+		String clientPath = client.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+		int size = (int) in.readLong();
+		FileOutputStream fos;
 		
+		if(isZip)
+		{
+			String temp = fileName.substring(0, fileName.lastIndexOf("."));
+			fos = new FileOutputStream(clientPath + temp + ".zip");
+		}
+		else {
+			fos = new FileOutputStream(clientPath + fileName);						
+		}
+		byte[] buffer = new byte[4096];
+		int read = 0;
+		int remaining = size;
+		while((read = in.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) {
+			remaining -= read;
+			fos.write(buffer, 0, read);
+		}
+		fos.close();
 	}
 	
 	public static void main(String[] args) throws Exception

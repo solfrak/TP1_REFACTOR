@@ -153,12 +153,40 @@ public class clientHandler extends Thread
 			zipOut.close();
 			fis.close();
 			fos.close();
+		
+			File zipFile = new File("compressed.zip");
+			FileInputStream fis2 = new FileInputStream(zipFile);
+			
+			out.writeLong(zipFile.length());
+			byte[] buffer2 = new byte[4096];
+			int count;
+			while((count = fis2.read(buffer2)) > 0)
+			{
+				out.write(buffer2, 0, count);
+			}
+			fis2.close();
+			
 		}
 		else
 		{
+			File f = new File(clientPath + fileName);
+			FileInputStream fis = new FileInputStream(f);
 			
+			out.writeLong(f.length());
+			byte[] buffer = new byte[4096];
+			int count;
+			while((count = fis.read(buffer)) > 0)
+			{
+				out.write(buffer, 0, count);
+			}
+			fis.close();
 		}
 		out.writeUTF("download received");
+	}
+	
+	private void sendFile(String file) throws Exception
+	{
+		
 	}
 	
 	private void processMessage(String message) throws Exception
