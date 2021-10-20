@@ -57,23 +57,23 @@ public class client
 	public static void main(String[] args) throws Exception
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		boolean isConnected = false;
-//        while(!isConnected)
-//        {
-//            try
-//            {
-//                System.out.println("Entrer l'adresse IP du serveur: ");
-//                String serverAddress = br.readLine();
-//                System.out.println("Entrer le port du serveur: ");
-//                int port = Integer.parseInt(br.readLine());
-//                socket = new Socket(serverAddress, port);
-//                isConnected = true;	
-//            }
-//            catch (Exception e) {
-//                System.out.println("La connection avec le serveur a echouer. Veuillez-reessayer.");
-//            }
-//        }
-        socket = new Socket("127.0.0.1", 5030);
+		boolean isConnected = false;
+        while(!isConnected)
+        {
+            try
+            {
+                System.out.println("Entrer l'adresse IP du serveur: ");
+                String serverAddress = br.readLine();
+                System.out.println("Entrer le port du serveur: ");
+                int port = Integer.parseInt(br.readLine());
+                socket = new Socket(serverAddress, port);
+                isConnected = true;	
+            }
+            catch (Exception e) {
+                System.out.println("La connection avec le serveur a echouer. Veuillez-reessayer.");
+            }
+        }
+//        socket = new Socket("127.0.0.1", 5030);
         
         in = new DataInputStream(socket.getInputStream());
         out = new DataOutputStream(socket.getOutputStream());

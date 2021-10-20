@@ -184,10 +184,6 @@ public class clientHandler extends Thread
 		out.writeUTF("download received");
 	}
 	
-	private void sendFile(String file) throws Exception
-	{
-		
-	}
 	
 	private void processMessage(String message) throws Exception
 	{

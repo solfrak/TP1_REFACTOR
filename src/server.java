@@ -4,7 +4,6 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.io.File;
-import java.io.*;
 public class server {
 
     public static void main(String[] args) throws Exception {
@@ -12,12 +11,12 @@ public class server {
         
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
 
-//        System.out.println("Entrer l'adresse IP du serveur: ");
-//        String serverAddress = br.readLine();
-//        System.out.println("Entrer le port du serveur: ");
-//        int serverPort = Integer.parseInt(br.readLine());
-        String serverAddress = "127.0.0.1";
-        int serverPort = 5030;
+        System.out.println("Entrer l'adresse IP du serveur: ");
+        String serverAddress = br.readLine();
+        System.out.println("Entrer le port du serveur: ");
+        int serverPort = Integer.parseInt(br.readLine());
+//        String serverAddress = "127.0.0.1";
+//        int serverPort = 5030;
 
         InetAddress serverIP = InetAddress.getByName(serverAddress);
         ServerSocket listener = new ServerSocket();
